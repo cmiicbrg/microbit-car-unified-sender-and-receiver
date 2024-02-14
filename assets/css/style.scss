@@ -1,0 +1,25 @@
+--- 
+--- 
+
+@import "{{ site.theme }}";
+
+header {
+    width: unset;
+    float: none;
+    position: unset;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+section {
+    width: unset;
+    float: unset;
+    padding-bottom: unset;
+}
+
+footer {
+    width: unset;
+    float: unset;
+    position: unset;
+    bottom: 50px;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
