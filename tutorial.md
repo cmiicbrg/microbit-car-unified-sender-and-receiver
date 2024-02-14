@@ -93,6 +93,24 @@ function schreibeGeschwindigkeit () {
 }
 ```
 
+## Bestimmen, was wir tun, wenn wir einen Text empfangene
+
+vor() bedeutet Aufruf vorwärts
+
+usw.
+
+```blocks
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "vor") {
+        vor()
+    } else if (receivedString == "zurück") {
+        zurück()
+    } else if (receivedString == "stop") {
+        stop()
+    }
+})
+```
+
 ## Fortlaufend die möglicherweise geänderten Werte schreiben und senden
 
 ```blocks
