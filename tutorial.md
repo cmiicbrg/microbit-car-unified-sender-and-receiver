@@ -1,4 +1,7 @@
-# Ein Fahrzeug mit dem Micro:bit steuern
+---
+title: Micro:bit Fahrzeug über Funk und Beschleunigungssensor steuern
+full-width: true
+---
 
 ## Einleitung
 
