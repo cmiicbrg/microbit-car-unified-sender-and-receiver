@@ -6,6 +6,12 @@ yyyIn diesem Tutorial lernst du, wie du ein Fahrzeug mit dem Micro:bit steuern k
 
 ## Beim Starten
 
+Erstelle die Variablen **r**, **vl** und **vr**. **r** wird für die Richtung verwendet und **vl** und **vr** für die Geschwindigkeit der linken und rechten Motoren.
+
+Beim Starten wird das Symbol **SmallDiamond** angezeigt und die Geschwindigkeit der Motoren auf 703 und die Richtung auf 0 gesetzt.
+
+Außerdem musst du die Funkgruppe auf einstellen.
+
 ```blocks
 let r = 0
 let vl = 0
@@ -14,6 +20,27 @@ basic.showIcon(IconNames.SmallDiamond)
 vr = 703
 vl = 703
 radio.setGroup(134)
+```
+
+## Beim drücken der Knöpfe A, B und des Logos
+
+Wenn der Knopf A gedrückt wird, senden wir den Text "vor" über Funk. Wenn der Knopf B gedrückt wird, senden wir den Text "zurück" über Funk. Wenn das Logo gedrückt wird, senden wir den Text "stop" über Funk.
+
+Außerdem verwenden wir Pfleile, um die Richtung anzuzeigen und das Icon **SmallDiamond** um anzuzeigen, dass das Fahrzeug gestoppt wurde.
+
+```blocks
+input.onButtonPressed(Button.A, function () {
+    basic.showArrow(ArrowNames.North)
+    radio.sendString("vor")
+})
+input.onButtonPressed(Button.B, function () {
+    basic.showArrow(ArrowNames.North)
+    radio.sendString("zurück")
+})
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    basic.showIcon(IconNames.SmallDiamond)
+    radio.sendString("stop")
+})
 ```
 
 ## Fertiges Projekt
@@ -44,6 +71,7 @@ function stop () {
 }
 input.onButtonPressed(Button.A, function () {
     basic.showArrow(ArrowNames.North)
+    radio.sendString("vor")
 })
 function zurück () {
     pins.digitalWritePin(DigitalPin.P0, 0)
@@ -52,9 +80,6 @@ function zurück () {
     pins.digitalWritePin(DigitalPin.P12, 0)
     basic.showArrow(ArrowNames.South)
 }
-input.onButtonPressed(Button.AB, function () {
-    basic.showArrow(ArrowNames.South)
-})
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "vor") {
         vor()
@@ -66,6 +91,7 @@ radio.onReceivedString(function (receivedString) {
 })
 input.onButtonPressed(Button.B, function () {
     basic.showArrow(ArrowNames.North)
+    radio.sendString("zurück")
 })
 function bestimmeRichtung () {
     // Wenn zu weit gedreht, wird sonst genau die entgegengesetzte Richtung gesetzt
@@ -90,7 +116,6 @@ basic.forever(function () {
     radio.sendNumber(r)
     schreibeGeschwindigkeit()
 })
-
 ```
 
 #### Metadata (used for search, rendering)
