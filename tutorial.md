@@ -1,3 +1,6 @@
+---
+lang: de
+---
 # Micro:bit Fahrzeug über Funk und Beschleunigungssensor steuern
 
 ## Einleitung
@@ -6,7 +9,9 @@ yyyIn diesem Tutorial lernst du, wie du ein Fahrzeug mit dem Micro:bit steuern k
 
 ## Beim Starten
 
-Erstelle die Variablen **r**, **vl** und **vr**. **r** wird für die Richtung verwendet und **vl** und **vr** für die Geschwindigkeit der linken und rechten Motoren.
+Erstelle die Variablen **r**, **vl** und **vr**. 
+
+**r** wird für die Richtung verwendet und **vl** und **vr** für die Geschwindigkeit der linken und rechten Motoren.
 
 Beim Starten wird das Symbol **SmallDiamond** angezeigt und die Geschwindigkeit der Motoren auf 703 und die Richtung auf 0 gesetzt.
 
@@ -45,7 +50,13 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
 
 ## Die Funktionen vor, zurück und stop
 
-Die Pins des Micro:bit sind mit den Eingängen des Motortreibers verbunden. Um dem Motortreiber mitzuteilen, in welche Richtung die Motoren laufen sollen, müssen die Pins auf 1 oder 0 gesetzt werden.
+Um eine Funktion zu erstellen, klicke unter Fortgeschritten auf Funktionen und dann auf **Erstelle eine Funktion**.
+
+
+
+Die Pins 0, 1, 8, 12 des Micro:bit sind mit den Eingängen des Motortreibers, die die Richtung der Motoren steuern, verbunden.
+
+Um dem Motortreiber mitzuteilen, in welche Richtung die Motoren laufen sollen, müssen die Pins auf 1 oder 0 gesetzt werden.
 
 ```blocks
 function vor () {
@@ -84,7 +95,6 @@ function schreibeGeschwindigkeit () {
 
 ```blocks
 basic.forever(function () {
-    bestimmeRichtung()
     radio.sendNumber(r)
     schreibeGeschwindigkeit()
 })
@@ -107,6 +117,12 @@ function bestimmeRichtung () {
         r = 180 * (Math.atan2(input.acceleration(Dimension.Y), -1 * input.acceleration(Dimension.X)) / Math.PI) - 90
     }
 }
+basic.forever(function () {
+// @highlight
+    bestimmeRichtung()
+    radio.sendNumber(r)
+    schreibeGeschwindigkeit()
+})
 ```
 
 ## Fertiges Projekt
@@ -188,4 +204,5 @@ basic.forever(function () {
 #### Metadata (used for search, rendering)
 
 * for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+<!-- <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script> -->
+</script>
