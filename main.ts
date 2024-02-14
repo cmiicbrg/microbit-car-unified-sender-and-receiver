@@ -23,6 +23,7 @@ function stop () {
 }
 input.onButtonPressed(Button.A, function () {
     basic.showArrow(ArrowNames.North)
+    radio.sendString("vor")
 })
 function zurück () {
     pins.digitalWritePin(DigitalPin.P0, 0)
@@ -31,9 +32,6 @@ function zurück () {
     pins.digitalWritePin(DigitalPin.P12, 0)
     basic.showArrow(ArrowNames.South)
 }
-input.onButtonPressed(Button.AB, function () {
-    basic.showArrow(ArrowNames.South)
-})
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "vor") {
         vor()
@@ -44,7 +42,8 @@ radio.onReceivedString(function (receivedString) {
     }
 })
 input.onButtonPressed(Button.B, function () {
-    basic.showArrow(ArrowNames.North)
+    basic.showArrow(ArrowNames.South)
+    radio.sendString("zurück")
 })
 function bestimmeRichtung () {
     // Wenn zu weit gedreht, wird sonst genau die entgegengesetzte Richtung gesetzt
