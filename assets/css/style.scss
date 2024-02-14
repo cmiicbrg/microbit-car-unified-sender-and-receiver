@@ -3,6 +3,11 @@
 
 @import "{{ site.theme }}";
 
+.wrapper {
+    width: 90vw;
+    margin: 0 auto;
+}
+
 header {
     width: unset;
     float: none;
