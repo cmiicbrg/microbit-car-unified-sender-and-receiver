@@ -1,3 +1,7 @@
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    basic.showIcon(IconNames.SmallDiamond)
+    radio.sendString("stop")
+})
 radio.onReceivedNumber(function (receivedNumber) {
     // serial.writeValue("r", receivedNumber)
     vr = Math.map(receivedNumber, -90, 90, 383, 1023)
@@ -8,13 +12,7 @@ function vor () {
     pins.digitalWritePin(DigitalPin.P1, 0)
     pins.digitalWritePin(DigitalPin.P8, 0)
     pins.digitalWritePin(DigitalPin.P12, 1)
-    basic.showLeds(`
-        . . # . .
-        . # # # .
-        # . # . #
-        . . # . .
-        . . # . .
-        `)
+    basic.showArrow(ArrowNames.North)
 }
 function stop () {
     pins.digitalWritePin(DigitalPin.P0, 0)
@@ -24,37 +22,17 @@ function stop () {
     basic.showIcon(IconNames.SmallDiamond)
 }
 input.onButtonPressed(Button.A, function () {
-    basic.showLeds(`
-        . . # . .
-        . # # # .
-        # . # . #
-        . . # . .
-        . . # . .
-        `)
-    radio.sendString("vor")
+    basic.showArrow(ArrowNames.North)
 })
 function zurück () {
     pins.digitalWritePin(DigitalPin.P0, 0)
     pins.digitalWritePin(DigitalPin.P1, 1)
     pins.digitalWritePin(DigitalPin.P8, 1)
     pins.digitalWritePin(DigitalPin.P12, 0)
-    basic.showLeds(`
-        . . # . .
-        . . # . .
-        # . # . #
-        . # # # .
-        . . # . .
-        `)
+    basic.showArrow(ArrowNames.South)
 }
 input.onButtonPressed(Button.AB, function () {
-    basic.showLeds(`
-        . . # . .
-        . . # . .
-        # . # . #
-        . # # # .
-        . . # . .
-        `)
-    radio.sendString("zurück")
+    basic.showArrow(ArrowNames.South)
 })
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "vor") {
@@ -66,24 +44,7 @@ radio.onReceivedString(function (receivedString) {
     }
 })
 input.onButtonPressed(Button.B, function () {
-    basic.showLeds(`
-        . . # . .
-        . # # # .
-        # . # . #
-        . . # . .
-        . . # . .
-        `)
-    radio.sendString("vor")
-})
-input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . # . .
-        . . . . .
-        . . . . .
-        `)
-    radio.sendString("stop")
+    basic.showArrow(ArrowNames.North)
 })
 function bestimmeRichtung () {
     // Wenn zu weit gedreht, wird sonst genau die entgegengesetzte Richtung gesetzt
