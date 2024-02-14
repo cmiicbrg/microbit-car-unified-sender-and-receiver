@@ -3,9 +3,11 @@ lang: de
 ---
 # Micro:bit Fahrzeug über Funk und Beschleunigungssensor steuern
 
+[TOC]
+
 ## Einleitung
 
-yyyIn diesem Tutorial lernst du, wie du ein Fahrzeug mit dem Micro:bit steuern kannst. Dazu verwenden wir einen Motor und ein Motorshield. Das Motorshield ist eine Platine, die auf den Micro:bit gesteckt wird und die Motoren steuert.
+In diesem Tutorial lernst du, wie du ein Fahrzeug mit dem Micro:bit steuern kannst. Dazu verwenden wir einen Motor und ein Motorshield (Motortreiber). Das Motortreiber ist die rote Platine, die auf dem Fahrzeug steckt. Der Motor wird mit dem Motortreiber verbunden und der Motortreiber wird mit dem Micro:bit verbunden. Das ist alles schon fertig auf dem Fahrzeug. Du musst, wenn es so weit ist nur noch den Micro:bit in den Steckplatz stecken.
 
 ## Beim Starten
 
@@ -125,6 +127,17 @@ basic.forever(function () {
 })
 ```
 
+## Die empfangene Zahl in die Geschwindigkeit umrechnen
+
+```blocks
+radio.onReceivedNumber(function (receivedNumber) {
+    // serial.writeValue("r", receivedNumber)
+    vr = Math.map(receivedNumber, -90, 90, 383, 1023)
+    vl = Math.map(-1 * receivedNumber, -90, 90, 383, 1023)
+})
+```
+
+
 ## Fertiges Projekt
 
 ```blocks
@@ -200,6 +213,10 @@ basic.forever(function () {
 })
 
 ```
+
+## Testen und abgeben
+
+Zeigt einem Lehrer, dass euer Fahrzeug funktioniert und gebt euren Code ab.
 
 #### Metadata (used for search, rendering)
 
