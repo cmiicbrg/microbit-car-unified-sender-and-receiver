@@ -1,5 +1,5 @@
 
-> Open this page at [https://cmiicbrg.github.io/microbit-car-unified-sender-and-receiber/](https://cmiicbrg.github.io/microbit-car-unified-sender-and-receiber/)
+> Open this page at [https://cmiicbrg.github.io/microbit-car-unified-sender-and-receiver/](https://cmiicbrg.github.io/microbit-car-unified-sender-and-receiver/)
 
 ## Use as Extension
 
@@ -8,7 +8,7 @@ This repository can be added as an **extension** in MakeCode.
 * open [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * click on **New Project**
 * click on **Extensions** under the gearwheel menu
-* search for **https://github.com/cmiicbrg/microbit-car-unified-sender-and-receiber** and import
+* search for **https://github.com/cmiicbrg/microbit-car-unified-sender-and-receiver** and import
 
 ## Edit this project
 
@@ -16,7 +16,7 @@ To edit this repository in MakeCode.
 
 * open [https://makecode.microbit.org/](https://makecode.microbit.org/)
 * click on **Import** then click on **Import URL**
-* paste **https://github.com/cmiicbrg/microbit-car-unified-sender-and-receiber** and click import
+* paste **https://github.com/cmiicbrg/microbit-car-unified-sender-and-receiver** and click import
 
 #### Metadata (used for search, rendering)
 
