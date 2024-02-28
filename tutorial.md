@@ -14,9 +14,9 @@ In diesem Tutorial lernst du, wie du ein Fahrzeug mit dem Micro:bit steuern kann
 Wir haben für dich bereits eine Variable **r** und eine Funktion **bestimmeRichtung** erstellt. Die Funktion **bestimmeRichtung** bestimmt die Ausrichtung (Drehung) des Micro:bit. Dazu wird der Beschleunigungssensor verwendet. Die Variable **r** wird später verwendet, um die Richtung des Fahrzeugs zu steuern. Hier ist also noch nichts zu tun!
 
 ```template
-function bestimmeRichtung () {
-    let r = 0
+let r = 0
 
+function bestimmeRichtung () {
     // Wenn zu weit gedreht, wird sonst genau die entgegengesetzte Richtung gesetzt
     if (input.acceleration(Dimension.Y) > 0) {
         r = 180 * (Math.atan2(input.acceleration(Dimension.Y), -1 * input.acceleration(Dimension.X)) / Math.PI) - 90
