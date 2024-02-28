@@ -5,19 +5,34 @@ lang: de
 
 [TOC]
 
-## Einleitung
+## Einleitung @unplugged
 
-In diesem Tutorial lernst du, wie du ein Fahrzeug mit dem Micro:bit steuern kannst. Dazu verwenden wir einen Motor und ein Motorshield (Motortreiber). Das Motortreiber ist die rote Platine, die auf dem Fahrzeug steckt. Der Motor wird mit dem Motortreiber verbunden und der Motortreiber wird mit dem Micro:bit verbunden. Das ist alles schon fertig auf dem Fahrzeug. Du musst, wenn es so weit ist nur noch den Micro:bit in den Steckplatz stecken.
+In diesem Tutorial lernst du, wie du ein Fahrzeug mit dem Micro:bit steuern kannst. Dazu verwenden wir einen Motor und ein Motorshield (Motortreiber). Der Motortreiber ist die rote Platine, die auf dem Fahrzeug steckt. Der Motor wird mit dem Motortreiber verbunden und der Motortreiber wird mit dem Micro:bit verbunden. Das ist alles schon fertig auf dem Fahrzeug. Du musst, wenn es so weit ist, nur noch den Micro:bit in den Steckplatz stecken. 
+
+## Die Richtung bestimmen
+
+Wir haben für dich bereits eine Variable **r** und eine Funktion **bestimmeRichtung** erstellt. Die Funktion **bestimmeRichtung** bestimmt die Ausrichtung (Drehung) des Micro:bit. Dazu wird der Beschleunigungssensor verwendet. Die Variable **r** wird später verwendet, um die Richtung des Fahrzeugs zu steuern. Hier ist also noch nichts zu tun!
+
+```template
+function bestimmeRichtung () {
+    let r = 0
+
+    // Wenn zu weit gedreht, wird sonst genau die entgegengesetzte Richtung gesetzt
+    if (input.acceleration(Dimension.Y) > 0) {
+        r = 180 * (Math.atan2(input.acceleration(Dimension.Y), -1 * input.acceleration(Dimension.X)) / Math.PI) - 90
+    }
+}
+```
 
 ## Beim Starten
 
-Erstelle die Variablen **r**, **vl** und **vr**. 
+Erstelle die Variablen **vl** und **vr**. 
 
-**r** wird für die Richtung verwendet und **vl** und **vr** für die Geschwindigkeit der linken und rechten Motoren.
+Die Variable **r** gibt es schon, sie wird für die Richtung verwendet. **vl** und **vr**  werden für die Geschwindigkeit der linken und rechten Motoren verwendet.
 
-Beim Starten wird das Symbol **SmallDiamond** angezeigt und die Geschwindigkeit der Motoren auf 703 und die Richtung auf 0 gesetzt.
+Beim Starten ``||basic:beim Start||`` wird das Symbol **SmallDiamond** (kleiner Diamant) angezeigt und die Geschwindigkeit der Motoren auf 703 und die Richtung auf 0 gesetzt.
 
-Außerdem musst du die Funkgruppe auf einstellen.
+Außerdem musst du die Funkgruppe einstellen. Am besten du nimmst die selbe Zahl wie im vorherigen Tutorial.
 
 ```blocks
 let r = 0
@@ -54,11 +69,11 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
 
 Um eine Funktion zu erstellen, klicke unter Fortgeschritten auf Funktionen und dann auf **Erstelle eine Funktion**.
 
-
-
 Die Pins 0, 1, 8, 12 des Micro:bit sind mit den Eingängen des Motortreibers, die die Richtung der Motoren steuern, verbunden.
 
 Um dem Motortreiber mitzuteilen, in welche Richtung die Motoren laufen sollen, müssen die Pins auf 1 oder 0 gesetzt werden.
+
+Wie die Werte der Pins gesetzt werden müssen, um rückwärts fahren zu können, wirst du später selbst herausfinden (müssen).
 
 ```blocks
 function vor () {
@@ -76,15 +91,13 @@ function stop () {
     basic.showIcon(IconNames.SmallDiamond)
 }
 function zurück () {
-    pins.digitalWritePin(DigitalPin.P0, 0)
-    pins.digitalWritePin(DigitalPin.P1, 1)
-    pins.digitalWritePin(DigitalPin.P8, 1)
-    pins.digitalWritePin(DigitalPin.P12, 0)
     basic.showArrow(ArrowNames.South)
 }
 ```
 
 ## Die Geschwindigkeit der Motoren schreiben
+
+Auf Pin 14 und 13 des Micro:bit sind die Ausgänge des Motortreibers, die die Geschwindigkeit der Motoren steuern, verbunden.
 
 ```blocks
 function schreibeGeschwindigkeit () {
@@ -113,6 +126,10 @@ radio.onReceivedString(function (receivedString) {
 
 ## Fortlaufend die möglicherweise geänderten Werte schreiben und senden
 
+Da sich später die Werte von vl und vr ständig ändern, schreiben wir sie fortlaufend.
+
+Außerdem senden wir die Richtung **r** über Funk.
+
 ```blocks
 basic.forever(function () {
     radio.sendNumber(r)
@@ -120,15 +137,17 @@ basic.forever(function () {
 })
 ```
 
-## Testen!!!
+## Testen!!! @unplugged
 
-Dein Fahrzeug sollte nun in der Lage sein vorwärts und rückwärts zu fahren und zu stoppen.
+Dein Fahrzeug sollte nun in der Lage sein vorwärts zu fahren und zu stoppen.
 Hole dir ein Fahrzeug, suche dir einen Partner, stellt die Funkgruppe ein und probiert es aus.
 Ein micro:bit steckt im Fahrzeug und der andere steuert es.
 
 ## Richtung bestimmen
 
-Die Richtung wird mit dem Beschleunigungssensor bestimmt. Dazu wird die Funktion **bestimmeRichtung** verwendet.
+Die Richtung wird mit dem Beschleunigungssensor bestimmt. Dazu wird die Funktion **bestimmeRichtung** verwendet. Diese Funktion hat es schon von Anfang an gegeben, du musst sie also nicht neu erstellen.
+
+Du musst aber **dauerhaft** um **bestimmeRichtung** ergänzen.
 
 ```blocks
 function bestimmeRichtung () {
@@ -147,6 +166,8 @@ basic.forever(function () {
 
 ## Die empfangene Zahl in die Geschwindigkeit umrechnen
 
+Die empfangene Zahl wird in die Geschwindigkeit umgerechnet und in die Variablen **vl** und **vr** geschrieben.
+
 ```blocks
 radio.onReceivedNumber(function (receivedNumber) {
     // serial.writeValue("r", receivedNumber)
@@ -155,8 +176,9 @@ radio.onReceivedNumber(function (receivedNumber) {
 })
 ```
 
-
 ## Fertiges Projekt
+
+Das fertige Projekt sieht dann so aus:
 
 ```blocks
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
@@ -187,10 +209,6 @@ input.onButtonPressed(Button.A, function () {
     radio.sendString("vor")
 })
 function zurück () {
-    pins.digitalWritePin(DigitalPin.P0, 0)
-    pins.digitalWritePin(DigitalPin.P1, 1)
-    pins.digitalWritePin(DigitalPin.P8, 1)
-    pins.digitalWritePin(DigitalPin.P12, 0)
     basic.showArrow(ArrowNames.South)
 }
 radio.onReceivedString(function (receivedString) {
