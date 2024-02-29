@@ -1,4 +1,6 @@
-[_metadata_:lang]:- "de"
+---
+lang: de
+---
 
 # Micro:bit Fahrzeug über Funk und Beschleunigungssensor steuern
 
