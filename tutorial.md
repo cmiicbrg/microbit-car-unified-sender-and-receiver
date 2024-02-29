@@ -122,7 +122,7 @@ radio.onReceivedString(function (receivedString) {
         stop()
     }
 })
-// @collapsed
+// @hide
 function vor () {
     pins.digitalWritePin(DigitalPin.P0, 1)
     pins.digitalWritePin(DigitalPin.P1, 0)
@@ -130,7 +130,7 @@ function vor () {
     pins.digitalWritePin(DigitalPin.P12, 1)
     basic.showArrow(ArrowNames.North)
 }
-// @collapsed
+// @hide
 function stop () {
     pins.digitalWritePin(DigitalPin.P0, 0)
     pins.digitalWritePin(DigitalPin.P1, 0)
@@ -138,7 +138,7 @@ function stop () {
     pins.digitalWritePin(DigitalPin.P12, 1)
     basic.showIcon(IconNames.SmallDiamond)
 }
-// @collapsed
+// @hide
 function zurück () {
     basic.showArrow(ArrowNames.South)
 }
