@@ -1,6 +1,5 @@
----
-lang: de
----
+[_metadata_:lang]:- "de"
+
 # Micro:bit Fahrzeug über Funk und Beschleunigungssensor steuern
 
 [TOC]
