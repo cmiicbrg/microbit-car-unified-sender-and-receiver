@@ -108,9 +108,8 @@ function schreibeGeschwindigkeit () {
 
 ## Bestimmen, was wir tun, wenn wir einen Text empfangene
 
-vor() bedeutet Aufruf vorwärts
-
-usw.
+``||function:Aufruf vor||`` findest du unter **Fortgeschritten - Funktionen**.
+Usw.
 
 ```blocks
 radio.onReceivedString(function (receivedString) {
@@ -122,6 +121,26 @@ radio.onReceivedString(function (receivedString) {
         stop()
     }
 })
+// @collapsed
+function vor () {
+    pins.digitalWritePin(DigitalPin.P0, 1)
+    pins.digitalWritePin(DigitalPin.P1, 0)
+    pins.digitalWritePin(DigitalPin.P8, 0)
+    pins.digitalWritePin(DigitalPin.P12, 1)
+    basic.showArrow(ArrowNames.North)
+}
+// @collapsed
+function stop () {
+    pins.digitalWritePin(DigitalPin.P0, 0)
+    pins.digitalWritePin(DigitalPin.P1, 0)
+    pins.digitalWritePin(DigitalPin.P8, 1)
+    pins.digitalWritePin(DigitalPin.P12, 1)
+    basic.showIcon(IconNames.SmallDiamond)
+}
+// @collapsed
+function zurück () {
+    basic.showArrow(ArrowNames.South)
+}
 ```
 
 ## Fortlaufend die möglicherweise geänderten Werte schreiben und senden
@@ -254,7 +273,14 @@ basic.forever(function () {
 
 Zeigt einem Lehrer, dass euer Fahrzeug funktioniert und gebt euren Code ab.
 
-#### Metadata (used for search, rendering)
+#### Metadaten (für Suche, Darstellung verwendet)
 
-* for PXT/microbit
+- für PXT/microbit
+
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+
+```validation.global
+# BlocksExistValidator
+    * enabled: true
+```
+
