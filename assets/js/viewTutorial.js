@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (ev) => {
   const tutorial = document.getElementsByClassName('view-tutorial')
   Array.from(tutorial).forEach((t) => {
-    const tutorialLang = t.href.includes('de') ? 'de' : 'en'
+    const tutorialLang = t.href.includes('/de/') ? 'de' : 'en'
     t.addEventListener('click', (ev) => {
       ev.preventDefault()
       t.href = t.href.replace('html', 'md')
