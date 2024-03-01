@@ -1,10 +1,4 @@
-# Tutorial für ein micro:bit-Fahrzeug
+# A unified sender and receiver for a micro:bit car
 
-- [▶️ Start tutorial in MakeCode](https://makecode.microbit.org/#tutorial:github:cmiicbrg/microbit-car-unified-sender-and-receiver/tutorial){:target="_blank"}
-- [👀 🌐 View tutorial](./tutorial.md){:class="view-tutorial"} [^1]
-- [👀 🇩🇪 Tutorial ansehen](./de/tutorial.md){:class="view-tutorial"}
+This is a tutorial for a micro:bit car that can be controlled by another micro:bit. The car can be controlled by a second micro:bit, which sends commands to the car via radio. The car has a receiver that listens for commands and executes them.
 
-[^1]: Translated by [https://chat.openai-com](https://chat.openai.com/)
-
-
-<script src="./assets/js/viewTutorial.js">
