@@ -1,24 +1,10 @@
+# Tutorial für ein micro:bit-Fahrzeug
 
-> Open this page at [https://cmiicbrg.github.io/microbit-car-unified-sender-and-receiver/](https://cmiicbrg.github.io/microbit-car-unified-sender-and-receiver/)
+- [▶️ Start tutorial in MakeCode](https://makecode.microbit.org/#tutorial:github:cmiicbrg/microbit-car-unified-sender-and-receiver/tutorial){:target="_blank"}
+- [👀 🌐 View tutorial](./tutorial.md){:class="view-tutorial"} [^1]
+- [👀 🇩🇪 Tutorial ansehen](./de/tutorial.md){:class="view-tutorial"}
 
-## Use as Extension
+[^1]: Translated by [https://chat.openai-com](https://chat.openai.com/)
 
-This repository can be added as an **extension** in MakeCode.
 
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/cmiicbrg/microbit-car-unified-sender-and-receiver** and import
-
-## Edit this project
-
-To edit this repository in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/cmiicbrg/microbit-car-unified-sender-and-receiver** and click import
-
-#### Metadata (used for search, rendering)
-
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+<script src="./assets/js/viewTutorial.js">

@@ -1,3 +1,7 @@
 {
-    "recommendations": ["ms-edu.pxt-vscode-web"]
+    "recommendations": [
+        "ms-edu.pxt-vscode-web",
+        "dbaeumer.vscode-eslint",
+        "shd101wyy.markdown-preview-enhanced"
+    ]
 }

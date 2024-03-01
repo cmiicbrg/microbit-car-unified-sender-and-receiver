@@ -26,5 +26,31 @@
         "**/pxt_modules": true,
         "**/.pxt": true
     },
+    "git.autofetch": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "editor.codeActionsOnSave": {
+        "source.formatDocument": "explicit",
+        "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": [
+        "vue",
+        "html",
+        "javascript"
+    ],
+    "eslint.format.enable": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "vue-html": "html"
+    },
+    "markdown-preview-enhanced.enableHTML5Embed": true,
     "markdown-preview-enhanced.enableScriptExecution": true,
+    "markdown-preview-enhanced.enableTypographer": false
 }
