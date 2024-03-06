@@ -1,5 +1,5 @@
 {
-    "name": "Micro:bit car unified sender and receiber",
+    "name": "Micro:bit car unified sender and receiver",
     "description": "",
     "dependencies": {
         "core": "*",
@@ -10,7 +10,8 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "tutorial.md"
+        "tutorial.md",
+        "_locales/de/tutorial.md"
     ],
     "testFiles": [
         "test.ts"
