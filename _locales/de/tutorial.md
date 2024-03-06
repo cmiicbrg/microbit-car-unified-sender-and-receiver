@@ -296,7 +296,7 @@ radio.setGroup(134)
 stop()
 ```
 
-## Testen und abgeben
+## Testen und abgeben @unplugged
 
 Zeigt einem Lehrer, dass euer Fahrzeug funktioniert und gebt euren Code ab.
 
