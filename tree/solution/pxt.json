@@ -1,0 +1,25 @@
+{
+    "name": "microbit-car-unified-sender-and-receiver-tree-solution",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*",
+        "microbit-car-unified-sender-and-receiver": "github:cmiicbrg/microbit-car-unified-sender-and-receiver"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "7.0.61",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "blocksprj"
+}
