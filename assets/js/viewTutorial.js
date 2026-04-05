@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (ev) => {
+document.addEventListener('DOMContentLoaded', () => {
   const tutorial = document.getElementsByClassName('view-tutorial')
   Array.from(tutorial).forEach((t) => {
     const tutorialLang = t.href.includes('/de/') ? 'de' : 'en'
