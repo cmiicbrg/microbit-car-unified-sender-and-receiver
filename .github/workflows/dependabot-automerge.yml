@@ -9,124 +9,13 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
 
 jobs:
   automerge:
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - id: metadata
-        uses: dependabot/fetch-metadata@v2
+      - uses: cmiic/dependabot-automation/merge@a221277d51fb80ee2a6ba76df53eb302706d2e3f # v1.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          skip-commit-verification: true
-
-      - name: Check PR age (3-day quarantine)
-        id: age
-        run: |
-          created_at="${{ github.event.pull_request.created_at }}"
-          created_ts=$(date -d "$created_at" +%s)
-          now_ts=$(date +%s)
-          age_days=$(( (now_ts - created_ts) / 86400 ))
-          echo "age_days=$age_days" >> $GITHUB_OUTPUT
-          if [ "$age_days" -lt 3 ]; then
-            echo "⏳ PR is $age_days day(s) old. Waiting for 3-day quarantine period."
-            echo "quarantine_passed=false" >> $GITHUB_OUTPUT
-          else
-            echo "✅ PR is $age_days day(s) old. Quarantine period passed."
-            echo "quarantine_passed=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Check for new dependencies
-        id: lockfile
-        if: steps.age.outputs.quarantine_passed == 'true' && steps.metadata.outputs.package-ecosystem == 'npm_and_yarn'
-        run: |
-          node << 'EOF'
-          const fs = require('fs');
-          const { execSync } = require('child_process');
-
-          function extractDeps(lockfile) {
-            const deps = new Set();
-            if (!lockfile.packages) return deps;
-            for (const key of Object.keys(lockfile.packages)) {
-              if (key === '') continue;
-              const match = key.match(/node_modules\/(.+)$/);
-              if (match) {
-                let pkgPath = match[1];
-                const lastNM = pkgPath.lastIndexOf('node_modules/');
-                if (lastNM !== -1) pkgPath = pkgPath.slice(lastNM + 13);
-                deps.add(pkgPath);
-              }
-            }
-            return deps;
-          }
-
-          function findLockfiles() {
-            const lockfiles = [];
-            function search(dir) {
-              for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-                if (entry.name === 'node_modules' || entry.name === '.git') continue;
-                const full = dir + '/' + entry.name;
-                if (entry.isDirectory()) search(full);
-                else if (entry.name === 'package-lock.json') lockfiles.push(full);
-              }
-            }
-            search('.');
-            return lockfiles;
-          }
-
-          const baseSha = '${{ github.event.pull_request.base.sha }}';
-          const lockfiles = findLockfiles();
-          let newDeps = [];
-
-          for (const lf of lockfiles) {
-            const rel = lf.replace('./', '');
-            try {
-              const baseContent = execSync(`git show ${baseSha}:${rel}`, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] });
-              const baseLock = JSON.parse(baseContent);
-              const prLock = JSON.parse(fs.readFileSync(lf, 'utf8'));
-              const baseDeps = extractDeps(baseLock);
-              const prDeps = extractDeps(prLock);
-              for (const d of prDeps) {
-                if (!baseDeps.has(d)) newDeps.push(`${rel}: ${d}`);
-              }
-            } catch (e) {
-              console.error(`Failed to verify ${rel}: ${e.message}`);
-              newDeps.push(`${rel}: verification-failed`);
-            }
-          }
-
-          if (newDeps.length > 0) {
-            console.log('❌ New dependencies detected:');
-            newDeps.forEach(d => console.log(`  - ${d}`));
-            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'has_new_deps=true\n');
-            process.exit(1);
-          }
-
-          console.log('✅ No new dependencies');
-          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'has_new_deps=false\n');
-          EOF
-
-      - name: Enable auto-merge for safe Dependabot PRs
-        if: >-
-          steps.age.outputs.quarantine_passed == 'true' &&
-          (steps.lockfile.outputs.has_new_deps == 'false' || steps.metadata.outputs.package-ecosystem != 'npm_and_yarn') &&
-          (
-            steps.metadata.outputs.package-ecosystem == 'github-actions' ||
-            steps.metadata.outputs.package-ecosystem == 'npm_and_yarn' ||
-            steps.metadata.outputs.package-ecosystem == 'devcontainers' ||
-            steps.metadata.outputs.package-ecosystem == 'docker'
-          ) &&
-          (
-            steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
-            steps.metadata.outputs.update-type == 'version-update:semver-minor'
-          )
-        run: gh pr merge --auto --merge "$PR_URL"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
