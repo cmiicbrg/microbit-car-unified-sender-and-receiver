@@ -10,6 +10,21 @@ updates:
       - dependencies
       - npm
     open-pull-requests-limit: 10
+    groups:
+      npm-dev:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - "*"
+      npm-prod:
+        dependency-type: production
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - "*"
 
   - package-ecosystem: github-actions
     directory: /
