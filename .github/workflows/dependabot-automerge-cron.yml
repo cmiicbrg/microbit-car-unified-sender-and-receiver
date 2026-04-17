@@ -2,7 +2,6 @@ name: Dependabot Auto-merge (Cron)
 
 on:
   schedule:
-    # Run daily at 20:00 UTC
     # Run at 00:43, 08:43, and 16:43 UTC
     - cron: '43 0,8,16 * * *'
   workflow_dispatch: {}
