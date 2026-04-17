@@ -4,6 +4,8 @@ updates:
     directory: /
     schedule:
       interval: daily
+      time: "21:43"
+      timezone: UTC
     commit-message:
       prefix: "chore(deps):"
     labels:
@@ -30,6 +32,8 @@ updates:
     directory: /
     schedule:
       interval: daily
+      time: "21:43"
+      timezone: UTC
     commit-message:
       prefix: "chore(deps):"
     labels:
