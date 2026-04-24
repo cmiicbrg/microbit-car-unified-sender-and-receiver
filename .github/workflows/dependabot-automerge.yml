@@ -16,6 +16,6 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - uses: cmiic/dependabot-automation/merge@92c07a205db298afe96d460597a90060f084b5eb # v1.6.0
+      - uses: cmiic/dependabot-automation/merge@473279c6de28189812f4913a62a5feae497bbbba # v1.7.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
