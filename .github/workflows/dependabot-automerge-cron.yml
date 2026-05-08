@@ -15,6 +15,6 @@ jobs:
   check-aged-prs:
     runs-on: ubuntu-latest
     steps:
-      - uses: cmiic/dependabot-automation/cron@473279c6de28189812f4913a62a5feae497bbbba # v1.7.1
+      - uses: cmiic/dependabot-automation/cron@3fa782b8001d74e4f492bd10c2516e44b379a6a3 # v1.8.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
